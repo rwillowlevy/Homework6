@@ -1,3 +1,49 @@
 .hide {
     display: none;
   }
+
+  h2 {
+    color: pink;
+    font-size: 50px;
+    font-style: oblique;
+  }
+
+  h6 {
+    color: pink;
+    font-size: 20px;
+    font-style: oblique;
+  }
+
+  div {
+    color: pink;
+    font-size: 20px;
+    font-style: oblique;
+  }
+
+  #five-day-forecast {
+    background-color: pink;
+    text-align: center;
+    padding: 20px;
+  }
+
+  #current-weather-conditions {
+    background-color: pink;
+  }
+
+  #searched-cities-card {
+    background-color: pink;
+    margin: 10px;
+    padding: 15px;
+  }
+
+  #search-btn {
+    background-color: pink;
+  }
+
+  #search-input {
+    background-color: pink;
+  }
+
+  #search-cities {
+    background-color: white;
+  }
