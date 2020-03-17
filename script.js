@@ -16,8 +16,6 @@ var currentWeatherIconCode = "";
 var currentWeatherIconUrl = "";
 var iconcode = "";
 var iconurl = "";
-var country = "";
-
 var listOfSearchedCities = [];
 
 var getSeachedCitiesFromLS = JSON.parse(localStorage.getItem("searched-cities"));
@@ -48,8 +46,6 @@ $("#search-btn").on("click", function() {
     if (listOfSearchedCities.length === 1) {
       $("#searched-cities-card").removeClass("hide");
     }
-    
-    console.log($("ul#searched-cities-list a").length);
     if ($("ul#searched-cities-list a").length >= 5) {
       ($("ul#searched-cities-list a:eq(4)").remove());
     }
@@ -134,19 +130,13 @@ function displayCities(citiesList) {
 function getColorCodeForUVIndex(uvIndex) {
   var uvIndexValue = parseFloat(uvIndex);
   var colorcode = "";
-  if (uvIndexValue <= 2) {
+  if (uvIndexValue <= 3) {
     colorcode = "#00ff00";
   }
-  else if ((uvIndexValue > 2) && (uvIndexValue <= 5)) {
+  else if ((uvIndexValue > 3) && (uvIndexValue <= 5)) {
     colorcode = "#ffff00";
   }
-  else if ((uvIndexValue > 5) && (uvIndexValue <= 7)) {
-    colorcode = "#ffa500";
-  }
-  else if ((uvIndexValue > 7) && (uvIndexValue <= 10)) {
-    colorcode = "#9e1a1a";
-  }
-  else if (uvIndexValue > 10) {
+  else if (uvIndexValue > 5) {
     colorcode = "#7f00ff";
   }
   return colorcode;
@@ -170,11 +160,8 @@ function resetGlobalVariables() {
   currentWeatherIconUrl = "";
   iconcode = "";
   iconurl = "";
-  country = "";
 }
-
 function searchCity(cityName){
- console.log(cityName);
  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + 
  cityName + "&appid=" + APIKey;
 
@@ -185,10 +172,8 @@ function searchCity(cityName){
 
  .then(function(response) {
    var result = response;
-   console.log(result);
    city = result.name.trim();
   currentDate = moment.unix(result.dt).format("l");
-  console.log(currentDate);
    var tempK = result.main.temp;
    tempF = ((tempK - 273.15) * 1.80 + 32).toFixed(1);
    humidityValue = result.main.humidity;
